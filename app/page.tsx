@@ -3,20 +3,18 @@ import { BlogPosts } from "app/components/posts";
 export default function Page() {
   return (
     <section>
-      {/* <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        My Portfolio
+      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
+        brihadeesh rk
       </h1>
       <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
+        {` I am a proficient full-stack developer with expertise in Node.js, Express, React Native, and Next.js. 
+Currently, I work as a Full Stack Engineering Consultant at Crecientech Infosystems, where I develop scalable servers and seamless multi-screen/page apps. 
+A supporter of typescript and dark mode, I balance my obsession to my laptop with a passion for fitness and Formula 1 racing.`}
       </p>
+
       <div className="my-8">
         <BlogPosts />
-      </div> */}
-      <p className="italic font-medium">under maintenance</p>
+      </div>
     </section>
   );
 }
