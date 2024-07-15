@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-* {
-  font-family: "IBM Plex Mono", monospace;
-}
-
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;

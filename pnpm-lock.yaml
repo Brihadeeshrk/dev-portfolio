@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@fontsource/ibm-plex-mono':
-    specifier: ^5.0.13
-    version: 5.0.13
   '@tailwindcss/postcss':
     specifier: 4.0.0-alpha.13
     version: 4.0.0-alpha.13(postcss@8.4.35)
@@ -63,10 +60,6 @@ packages:
       tslib: 2.6.2
     dev: false
     optional: true
-
-  /@fontsource/ibm-plex-mono@5.0.13:
-    resolution: {integrity: sha512-gtlMmvk//2AgDEZDFsoL5z9mgW3ZZg/9SC7pIfDwNKp5DtZpApgqd1Fua3HhPwYRIHrT76IQ1tMTzQKLEGtJGQ==}
-    dev: false
 
   /@img/sharp-darwin-arm64@0.33.4:
     resolution: {integrity: sha512-p0suNqXufJs9t3RqLBO6vvrgr5OhgbWp76s5gTRvdmxmuv9E1rcaqGUsl3l4mKVmXPkTkTErXediAui4x+8PSA==}
