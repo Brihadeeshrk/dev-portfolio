@@ -16,7 +16,7 @@ export default function Page() {
       <div className="my-8">
         <BlogPosts />
       </div> */}
-      <p className="italic font-light">under maintenance</p>
+      <p className="italic font-medium">under maintenance</p>
     </section>
   );
 }
