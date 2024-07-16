@@ -11,13 +11,13 @@ import { baseUrl } from "./sitemap";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Next.js Portfolio Starter",
-    template: "%s | Next.js Portfolio Starter",
+    default: "Brihadeesh's Portfolio",
+    template: "%s | Brihadeesh's Portfolio",
   },
-  description: "This is my portfolio.",
+  description: "Brihadeesh's Portfolio.",
   openGraph: {
     title: "My Portfolio",
-    description: "This is my portfolio.",
+    description: "Brihadeesh's Portfolio.",
     url: baseUrl,
     siteName: "My Portfolio",
     locale: "en_US",
@@ -47,12 +47,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
+        "text-black bg-[#f3f4f1] dark:text-white dark:bg-black",
         GeistSans.variable,
         GeistMono.variable
       )}
     >
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
+      <body className="antialiased max-w-xl mx-4 mt-8 ml-8">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
