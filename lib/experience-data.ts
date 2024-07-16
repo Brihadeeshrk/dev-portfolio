@@ -13,8 +13,8 @@ export const EXPERIENCE_DATA: Array<WorkExperience> = [
       {
         name: "instanoter",
         points: [
-          "evaluated requirements and came up with solutions to make maintenance and content management easy for admins",
-          "built a wordpress website using templates and custom plugins for seo and metrics",
+          "developed a full stack web app that allows you to summarise instagram reels and gives you notes on them",
+          "added the ability for a user to login and save their summaries",
         ],
       },
     ],

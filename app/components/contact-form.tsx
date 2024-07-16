@@ -13,37 +13,33 @@ export default function ContactForm() {
   }
 
   return (
-    <>
+    <form className="flex flex-col space-y-3" onSubmit={onSubmit}>
       <p>contact me</p>
-      <form className="flex flex-col space-y-3" onSubmit={onSubmit}>
-        <div className="flex flex-col">
-          <label htmlFor="email">email</label>
-          <Input
-            id="email"
-            name="email"
-            placeholder="type your email here."
-            onChange={(e) => setDetails({ ...details, email: e.target.value })}
-            value={details.email}
-          />
-        </div>
+      <div className="flex flex-col">
+        <label htmlFor="email">email</label>
+        <Input
+          id="email"
+          name="email"
+          placeholder="type your email here."
+          onChange={(e) => setDetails({ ...details, email: e.target.value })}
+          value={details.email}
+        />
+      </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="message">message</label>
-          <Textarea
-            id="message"
-            name="message"
-            value={details.message}
-            onChange={(e) =>
-              setDetails({ ...details, message: e.target.value })
-            }
-            placeholder="type your message here."
-          />
-        </div>
+      <div className="flex flex-col">
+        <label htmlFor="message">message</label>
+        <Textarea
+          id="message"
+          name="message"
+          value={details.message}
+          onChange={(e) => setDetails({ ...details, message: e.target.value })}
+          placeholder="type your message here."
+        />
+      </div>
 
-        <Button type="submit" className="w-fit">
-          Submit
-        </Button>
-      </form>
-    </>
+      <Button type="submit" className="w-fit">
+        Submit
+      </Button>
+    </form>
   );
 }

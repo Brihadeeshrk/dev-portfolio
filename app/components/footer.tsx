@@ -59,6 +59,9 @@ export default function Footer() {
       <p className="mt-8 text-neutral-600 dark:text-neutral-300">
         by brihadeesh, built using mdx and next
       </p>
+      <p className="text-neutral-600 dark:text-neutral-300">
+        bengaluru, ka, india
+      </p>
     </footer>
   );
 }
