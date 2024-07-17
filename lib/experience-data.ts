@@ -15,10 +15,15 @@ export const EXPERIENCE_DATA: Array<WorkExperience> = [
         points: [
           "developed a full stack web app that allows you to summarise instagram reels and gives you notes on them",
           "added the ability for a user to login and save their summaries",
+          "also added a library feature that stores all notes summarised by all users",
+          "added rate limiting for the number of reels summarised by a user and reset the counter after 24hrs",
+          `implemented a robust backend to check if the reel has already been summarised earlier, if it has, then the summary will be returned
+          and a property called 'fetchCount' in the database for that reel will be increased by 1 to indicate how many times the same reel has been summarised`,
+          "added pagination, genre based filtering for summaries in the library",
         ],
       },
     ],
-    technologies: ["wordpress", "figma"],
+    technologies: ["next", "firebase"],
   },
   {
     id: 1,

@@ -1,5 +1,7 @@
 import { BlogPosts } from "app/components/posts";
 import WorkExperience from "./components/experience";
+import Achievements from "./components/achievements";
+import Tools from "./components/tools";
 
 export default function Page() {
   return (
@@ -13,9 +15,9 @@ Currently, I work as a Full Stack Engineering Consultant at Crecientech Infosyst
 A supporter of typescript and dark mode, I balance my obsession to my laptop with a passion for fitness and Formula 1 racing.`}
       </p>
 
-      <p className="my-3">--</p>
-
       <WorkExperience />
+      <Achievements />
+      <Tools />
 
       <div className="my-8">
         <BlogPosts />

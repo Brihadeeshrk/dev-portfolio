@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Input } from "./input";
-import { Textarea } from "./textarea";
-import { Button } from "./button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Button } from "./ui/button";
 
 export default function ContactForm() {
   const [details, setDetails] = React.useState({ email: "", message: "" });

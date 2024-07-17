@@ -14,3 +14,11 @@ export interface WorkExperience {
   projects: Project[];
   technologies: string[];
 }
+
+export interface Achievements {
+  id: number;
+  title: string;
+  description: string;
+  awardee: string;
+  year: number;
+}
