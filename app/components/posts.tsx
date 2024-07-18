@@ -1,12 +1,21 @@
 import Link from "next/link";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 
-export function BlogPosts() {
+interface Props {
+  few?: boolean;
+}
+
+export function BlogPosts({ few }: Props) {
   let allBlogs = getBlogPosts();
+
+  const articles = few ? allBlogs.slice(0, 5) : allBlogs;
 
   return (
     <div>
-      {allBlogs
+      <p className="my-3">--</p>
+      <p className="font-medium mb-8">Posts</p>
+
+      {articles
         .sort((a, b) => {
           if (
             new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
@@ -31,6 +40,14 @@ export function BlogPosts() {
             </div>
           </Link>
         ))}
+      {few && (
+        <p className="font-medium mb-8">
+          read more posts{" "}
+          <Link href="/blog" className="underline text-orange-500">
+            here
+          </Link>
+        </p>
+      )}
     </div>
   );
 }

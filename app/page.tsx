@@ -20,7 +20,7 @@ A supporter of typescript and dark mode, I balance my obsession to my laptop wit
       <Tools />
 
       <div className="my-8">
-        <BlogPosts />
+        <BlogPosts few />
       </div>
     </section>
   );

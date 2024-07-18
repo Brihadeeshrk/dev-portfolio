@@ -20,7 +20,9 @@ export default function Achievements() {
               <div key={exp.id} className="my-8">
                 <p className="font-medium italic">{exp.title}</p>
                 <p className="text-sm">
-                  given by {exp.awardee} in {exp.year}
+                  given by{" "}
+                  <span className="text-orange-500">{exp.awardee}</span> in{" "}
+                  {exp.year}
                 </p>
                 <p className="text-sm">{exp.description}</p>
               </div>

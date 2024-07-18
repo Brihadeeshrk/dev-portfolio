@@ -1,0 +1,183 @@
+---
+title: "PROJECT [optimisation of traffic using single agent reinforcement learning]"
+publishedAt: "2023-05-20"
+summary: "Traffic congestion is a major issue in urban areas, causing significant delays, increased fuel consumption, and air pollution. This project aims to solve this issue by using Reinforcement Learning to understand and find just the right amount of time for you to wait at a signal, with the aim of making sure that every traveller spends the least amount of time at the signal at any given point in the day."
+---
+
+client: msrit |
+my role: python developer |
+project duration: 3 months |
+
+Urban air pollution as cited in is a major environmental and public health issue, with on-road vehicles being a significant contributor to poor air quality. As such, there is a growing body of research aimed at better understanding the sources and impacts of vehicle emissions in urban environments. A key area of interest is the impact of traffic congestion on vehicle emissions, as congestion can lead to prolonged idling, stop-and-go driving, and other factors that can increase emissions.
+Signalized intersections are a critical component of urban transportation networks, providing a means to manage traffic flow and ensure safety for drivers, pedestrians, and cyclists. Signal timing is a crucial aspect of intersection design, as it can affect traffic flow and safety. The effect of signal timing on traffic flow and crashes has been the subject of numerous studies. The use of reinforcement learning algorithms, such as those implemented in the SUMO-RL framework, could provide an additional tool for improving traffic flow in Bangalore. By learning effective traffic signal control policies, the RL model could optimize traffic flow in the city, reducing congestion and improving travel times for commuters.
+
+# issues and challenges
+
+Training a reinforcement learning model to optimize traffic signal timings can be a challenging task due to several issues and challenges. One of the main challenges is the complexity and variability of the traffic environment, which can be affected by factors such as weather conditions, road closures, accidents, and special events. These factors can cause changes in traffic flow patterns, making it difficult for the reinforcement learning model to learn and adapt to the changing environment. Moreover, traffic signal optimization is a multi-objective problem, as it involves balancing competing goals such as minimizing travel time, reducing emissions, and improving safety.
+
+# proposed model
+
+With this project, our objective was to research and come up with an RL model that is suited to Bangalore’s environment and can effectively manage traffic and save time. For this, we shortlisted three policies, DQN, PPO, and A2C. We use the models offered by stable baseline S3, which is a popular library that offers oral policies and models that are built on top of TensorFlow. it also allows the models to be used in a custom environment such as ours and provides tools for visualizing, analyzing, training, and testing our policies’ performance.
+
+- A2C stands for Advantage Actor-Critic. The actor part of the model learns the policy and the possible actions in the state, the critic part learns the value function, which is used to estimate a concept known as a reward, and The advantage part of the model is used to determine how much better the model performed that it initially expected.
+
+- DQN or deep Q networks, an agent interacts with an environment by selecting actions based on a policy that is updated over time using the Q learning algorithm. DQN is known for its ability to handle high-dimensional states spaces, making it a popular choice for applications in computer vision and robotics. However, one can compare the behavior of DQN to a chess game, the goal in chess is to play the long game and not dwell over immediate moves, DQN is a model that performs very well in immediate cases but fails as a policy to understand and play the long game
+
+- PPO stands for proximal policy optimization, it is a way for machines to learn how to perform tasks by trial and error, adjusting the behavior based on feedback from their environment.
+
+We validate our model’s performance by comparing it against fixed times, to see which model performs better in which situation. We identified several limitations such as not considering the role of pedestrians in this case, the severe drop in performance will be expanded. This current network accounts for two agents as to traffic junctions. The network found it difficult to communicate with other agents and wait times in the simulator increased drastically.
+
+# framework and system design
+
+- ## Data Collection:
+
+  - Collect real-world traffic data such as traffic volumes, speeds, and travel times to create a realistic traffic simulation environment.
+
+  - Use OpenStreetMaps to create a network of intersections and roads.
+
+  - Create a SUMO configuration file that specifies the simulation parameters, such as the simulation time and the simulation step length.
+
+- ## Traffic Simulation:
+
+  - Use SUMO to simulate the traffic in the network of intersections.
+
+  - Use a reinforcement learning algorithm to learn the optimal signal timing policies for each intersection.
+
+  - The reinforcement learning algorithm will receive the state of the intersection (such as the number of waiting cars, the time since the last green signal, etc.) as input and output the optimal signal timing policy.
+
+- ## Model Training:
+
+  - Train the reinforcement learning model using the collected traffic data and the simulated traffic in SUMO.
+
+  - Use a deep learning architecture, such as a neural network, to approximate the Q-function of the reinforcement learning algorithm.
+
+- ## Evaluation:
+
+  - Evaluate the performance of the trained model by running simulations with various traffic scenarios.
+
+  - Compare the results with traditional fixed-time signal control systems and other state-of-the-art traffic signal control methods.
+
+- ## Deployment:
+
+  - Deploy the trained reinforcement learning model in a real-world traffic signal control system.
+
+  - Monitor the performance of the deployed model and fine-tune the model if necessary.
+
+- ## User Interface:
+
+  - Develop a user interface for the traffic signal control system.
+
+  - The user interface will allow traffic engineers to visualize the simulation results and manually adjust the signal timing policies if necessary.
+
+- ## Integration:
+
+  Integrate the traffic signal control system with other transportation systems, such as intelligent transportation systems, to improve traffic management and reduce congestion.
+
+# architecture diagram
+
+<div className="bg-white p-2 border-5 border-orange-500">
+  <img src="/assets/arch-diagram.webp" alt="architecture diagram" />
+</div>
+
+The Architecture of this project comprises of 4 Key Components as shown above.
+
+- Eclipse SUMO: Eclipse SUMO is a microscopic traffic simulator that models traffic flow and provides real-time traffic data, such as vehicle speed, position, and lane changes. SUMO is used to simulate traffic flow on a road network to give us a baseline for fixed signal timing-based traffic as well as provide input data to the reinforcement learning algorithm and evaluate it. The road network is defined in a network file in SUMO’s XML format, which specifies the roads, intersections, traffic signals, and other infrastructure.
+
+- Traffic Control Interface (TRACI): TRACI is a communication interface that allows external programs to interact with SUMO. The RL-Agent uses TRACI to send control signals to the traffic signal controller and receive real-time traffic data from SUMO. TRACI also allows the RL-Agent to control other SUMO features, such as adding or removing vehicles from the simulation.
+
+- SUMO-RL: SUMO-RL is a Python library that provides reinforcement learning algorithms designed for traffic control systems. It uses the simulated traffic data from SUMO as input to the reinforcement learning algorithm and outputs control signals to the RL-Agent. The library can be used with several reinforcement learning algorithms, including Deep Q-Network (DQN), Proximal Policy Optimization (PPO), and Deep Deterministic Policy Gradient (DDPG), which are all suitable for traffic signal control problems
+
+- RL-Agent: The RL-Agent is a software component that implements the reinforcement learning algorithm. It receives preprocessed traffic data from SUMO-RL, and based on the learned policy, outputs control signals to the traffic signal controller through TRACI. The RL-Agent uses a deep neural network to approximate the Q-values of each possible action and learns the optimal policy by iteratively updating the network parameters using the Bellman equation. The RL-Agent also uses techniques such as experience replay and target network to improve the stability and convergence of the learning algorithm.
+
+Together, these components form a powerful traffic signal control system that uses reinforcement learning to optimize traffic flow in a road network. The system can adapt to changing traffic conditions and provide real-time control of traffic signals to improve overall traffic efficiency. The architecture of the project can be visualized as follows:
+:
+
+- The traffic simulation is set up in Eclipse SUMO using a network file that defines the road network, traffic flow, and traffic signal controllers.
+
+- The RL-Agent and SUMO-RL are initialised with the network file, and the RL- Agent’s neural network is randomly initialised.
+
+- The RL-Agent interacts with the SUMO simulation through the TRACI interface, receiving preprocessed traffic data from SUMO-RL and sending control signals to the traffic signal controller.
+
+- The RL-Agent selects an action based on the current state and its learned policy and sends the corresponding control signal to the traffic signal controller through TRACI.
+
+- The traffic signal controller adjusts the timing and duration of the traffic signals based on the received control signal.
+
+- SUMO simulates the traffic flow and returns real-time traffic data, such as vehicle speed, position, and lane changes, to SUMO-RL.
+
+- SUMO-RL preprocesses the traffic data and passes it to the RL-Agent, along with the reward signal from the previous action.
+
+- The RL-Agent uses the preprocessed traffic data and reward signal to update its neural network using the selected reinforcement learning algorithm.
+
+- Steps 3-8 are repeated until the RL-Agent converges to an optimal policy for the traffic signal control problem.
+
+- The optimal policy can be deployed to the traffic signal controller in the actual traffic system, or the simulation can be further modified to test different traffic scenarios and policies.
+
+Overall, this process illustrates how the different components of the traffic signal control system work together to optimize traffic flow in a road network using reinforcement learning and real-time traffic data from Eclipse SUMO
+
+# implementation
+
+Before we discuss the models that have been used in this work, it is essential to have an understanding of Network and Route Files and how they can be generated. Creating a traffic network in Eclipse SUMO involves defining the topology of the road network, specifying the location and properties of intersections and roads, and adding other relevant features such as traffic signals, stop signs, and pedestrian crossings.
+
+## Generation of Network Files
+
+A network file is a file that contains the geometric and topological information necessary to simulate traffic flow in a specific road network.
+
+The network file typically includes information such as the positions and shapes of individual road segments, intersections, traffic signals, and other features of the road network. It may also include information about the capacity and speed limits of each road segment, as well as information about the types of vehicles that are allowed to travel on each segment.
+
+The network file can be created using a variety of tools and techniques, including manual digitization, GIS data import, or automatic extraction from satellite imagery or other sources.
+
+## Generation of Route Files
+
+A route file is a file that contains the routing information for each individual vehicle in the simulation.
+
+The route file specifies the sequence of edges or nodes that a particular vehicle will follow as it travels through the road network. Each route is defined by a series of edges or nodes that the vehicle will traverse, along with the time that the vehicle is expected to arrive at each point along the route.
+
+The route file can be used to simulate a wide range of different traffic scenarios, including simple point-to-point routing, complex multi-modal routing involving multiple modes of transportation (such as buses and trains), and even dynamic routing that takes into account real-time traffic conditions and other factors.
+
+Route files can be created using a variety of tools and techniques, including manual editing, automated route generation algorithms, or data import from other sources. Once the route file has been created, it can be used to simulate a wide range of different traffic scenarios in SUMO, including both static and dynamic simulations. There are 2 ways we can generate and edit route files.
+
+## Training Models
+
+The procedure to train the A2C, DQN, and PPO Models are identical.
+
+Here is the Algorithm to train the PPO model:
+
+INPUT: Network File, Route File, Number of Agents, Number of Simulation Seconds, Environment, Type of Policy
+
+OUTPUT: PPO Model, bestmodel.zip, and .pkl files
+
+- Import Route and Network Files from SUMO
+
+- Import the sumo-rl environment and initialize 2 environments for training and evaluation
+
+- Pass in the parameters such as Network File Path, Route File Path, useGui, No: of Agents, and the name of the file the model would be saved as and also set the minGreen and maxGreen values
+
+- Import the PPO model from stableBaselineS3, initialize the model, and specify the type of policy and learning rate
+
+- Provide functions for early stopping and saving the best model and setting deterministic as False
+
+- Run this function for 100,000 steps as part of the training process
+
+- Test the saved model with several unit tests and compare the times with respect to fixed times
+
+## Calculation of Reward
+
+In reinforcement learning, a reward is a scalar feedback signal that an agent receives from its environment after taking an action. The reward signal indicates how well the agent is performing with respect to its task or goal.
+
+The goal of reinforcement learning is to learn a policy or decision-making function that maximizes the cumulative sum of rewards over time. The policy specifies which actions the agent should take in each state of the environment, based on the available information. The reward is calculated as the difference between the current wait time and the wait time of the previous iteration.
+
+# experiments and results
+
+As this paper is in the process of being published, results and other technical aspects cannot be revealed at the moment.
+
+# future work
+
+The future scope for this project would include areas such as:
+
+- Multi-agent systems: The current project focuses on optimizing traffic times for individual intersections. However, future work could expand to optimize traffic flow across entire road networks, taking into account multiple intersections and traffic lights. This could involve developing multi-agent reinforcement learning techniques to coordinate the actions of multiple traffic lights and minimize overall traffic congestion.
+
+- Online learning: The current project assumes a static traffic environment, but in reality, traffic patterns can change rapidly and unpredictably. Future work could focus on developing online reinforcement learning algorithms that can adapt to changes in traffic conditions in real time. This would involve designing reinforcement learning models that can learn and update their policies on-the-fly, based on real-time traffic data.
+
+- Human factors: Another potential area for future research is to consider the impact of human behavior on traffic flow. For example, drivers may have different preferences or behaviors that could influence the effectiveness of the reinforcement learning algorithm. Developing reinforcement learning models that can take into account the impact of human behavior could lead to more effective and realistic traffic management solutions.
+
+- Scalability: The current project focuses on a single intersection, but real-world traffic systems can be incredibly complex and involve many intersections and roadways. Future work could focus on developing scalable reinforcement learning algorithms that can handle large-scale traffic networks efficiently and effectively.
