@@ -1,0 +1,171 @@
+---
+title: "BLOG [hooks by a noob - useState]"
+publishedAt: "2024-05-29"
+summary: "a guide about useState"
+---
+
+if youve heard of React, its synonymous with the term State, and honestly, everyone knows useState. it doesnt hurt to understand it on a deeper level, but lets start from 0
+
+- useState is a hook offered by React that lets us store some value in our component
+
+- the syntax for which is:
+
+`const [state, setState] = useState(initialValueOfState)`
+
+we usually declare state variables at the top of our component
+
+- useState always returns 2 values, the value and a function to set the value, which can be obtained using array destructuring, ie [property1, property2]
+
+- we can pass an initial value to this state, and this value WILL be ignored after the first render
+
+- the set function takes in a value, updates the state and triggers a re render
+
+- we can also pass in a function as an initialValue but, this function has to return a value of some type and MUST NOT take any args
+
+`const [state, setState] = useState(() => someFn())`
+
+if you're using typescript along with react, you could also specify what type of state you're storing. like this, and when you do this, you don't have to specify an initial value
+
+```tsx
+const [state, setState] = useState<boolean>();
+const [secondState, setSecondState] = useState<number[]>([]);
+// and so on
+```
+
+- you can call useState in react client components and custom hooks
+
+# set
+
+- the set fn is used to change the value of the state, and this then triggers a re render
+
+- we could pass in a value directly, or pass in a function that calculates the new state based on previous values
+
+- when we use the setState(), a lot of the times ive wondered why i couldnt access the value of the state immediately after setting it, but it doesnt work that way. we still end up getting the old/ initial value
+
+- if the new value of the state is idential to the old state by using a simple js comparison tool, Object.is, like this
+  Note that, this isnt exactly what happens, but just a representation
+
+- if the value obtained is true, react will not re render the component.
+
+- react performs something called Batch Updates.
+
+```tsx
+const initialState = { name: "Tom" };
+
+const newState = { name: "Tom" };
+
+// comparing old and proposed new state
+console.log(Object.is(initialState, newState));
+// result: true
+```
+
+- setting a state will queue up another re render but in some cases we may want to perform multiple state operations before a re render
+
+- taking for example this snippet
+
+```tsx
+export function Counter() {
+  const [no, setNo] = useState<number>(0);
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button
+        onClick={() => {
+          setNo(no + 1);
+          setNo(no + 1);
+          setNo(no + 1);
+        }}
+      >
+        add 3
+      </button>
+    </>
+  );
+}
+```
+
+- we may be thinking, that the value after 1 click would be 3, but no. each render's values are fixed, so the value of no in the first render is always 0
+
+- so in essence, we're pretty much saying this no matter how many times we call setNo inside the onClick fn
+
+```tsx
+setNo(0 + 1);
+setNo(0 + 1);
+setNo(0 + 1);
+```
+
+- react waits until all the code in the event handler has finished executing before processing the state updates. this is why the re render only happens after all the setNo's are called
+
+- if you're still unclear of this, let me help you with an example, now lets say you're ordering a food, the waiter doesn't run to the kitchen everytime you mention a dish no, he waits until you're done and then forwards the order to the kitchen. same thing
+
+- so, this way, we can process and set other state variables also, without triggering too many re renders
+
+- this behaviour is known as batching
+
+- now, lets say you'd like to purposely update the same state multiple times before a re render, you can pass in a function to setState and modify the previous value. like this setNo(n => n+1)
+
+- in the case that we need to force react to re render, we can use flushSync
+
+- flushSync does impact the performance of a webapp as it immediately tells the DOM (synchronously) to re render and process an update
+
+```tsx
+import { flushSync } from "react-dom";
+
+flushSync(() => {
+  setSomething(123);
+});
+```
+
+- when you have multiple properties in your state variable, for example, an contact form where you have email, name and message, changing the state like this won't work
+
+```tsx
+const [form, setForm] = useState({
+name: "",
+email: "",
+message: ""
+})
+
+const onChange = () => {
+setForm({name: "Tom", email: "tom@tom.com", message; "Hello tom"})
+}
+
+// updating like this will throw an error
+form.name = "Adam"
+
+// instead, change it like this, destructure the form variable, take all of its existing values and overwrite the name field
+setForm({...form, name: 'Adam'})
+```
+
+- lets say that you're using a function to initialise the initial value of the state, and as i've mentioned above, this initial value is pretty much discarded after the first re render.
+
+`const [no, setNo] = useState(initialiseNo())`
+
+- calling the initialiser function like this would call it on every re render, very similar to how you dont pass in the functionName with the () in an onClick
+
+- instead, you could do this `const [no, setNo] = useState(initialiseNo)` or `const [no, setNo] = useState(() => initialiseNo())`
+
+- one thing you may not have noticed, i took my time to notice it, pretty much every component, let it be a div, or any other custom component. even though you may not be accepting any props, there will always be one prop that will be available for you to set, and thats the key prop
+
+- the key prop is important when dealing with lists as it helps us keep track of elements in the list that have been updated or deleted.
+
+- you can reset the state of a component by passing a different key. an example:
+  lets say you have a component that renders a pie chart. now initially you pass it an array of objects as props for it to render. now lets say, you switch tabs and would like to see a pie chart of some other data, if you console log data from inside this pie chart, you can clearly see that the data is changing, but the UI isnt. one way to force the re render would be by passing a key prop to this component.
+  upon the tabswitch, the value of key also changes, rendering the pie chart to show the updated data whenever you switch tabs
+
+- one message you must've seen if you've worked with react is this error Uncaught Invariant Violation: Too many re-renders. React limits the number of renders to prevent an infinite loop. but what does it mean?
+- if this error pops up on the screen, we're most likely updating the state during re renders and this way we're sort of entering a loop, because this change triggers another re render and that triggers another and so on
+
+- and this could be caused by you calling setState in a loop, or by making a `function` incorrectly, like this `onClick={onClick()}`
+
+if i do come across some interesting concepts about useState that i'd like to mention, i'll do this
+
+```tsx
+const [pageContent, setPageContent] = React.useState({});
+
+const onUpdate = (newContent) => {
+  setPageContent({
+    ...pageContent,
+    newContent,
+  });
+};
+```

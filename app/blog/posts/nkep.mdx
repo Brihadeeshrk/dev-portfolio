@@ -1,0 +1,84 @@
+---
+title: "PROJECT [neural key exchange protocol]"
+publishedAt: "2022-04-12"
+summary: "This project aims to implement the MOST used protocol for key exchange between two parties A and B in the practice is Diffie–Hellman key exchange protocol"
+---
+
+client: msrit |
+my role: python developer |
+project duration: 1 month |
+
+Let's start off with an introduction to what key exchange protocol is,
+
+Key exchange protocol is a method used in cryptography to securely establish a shared secret key between two or more parties who wish to communicate securely over an insecure communication channel, such as the internet
+
+This shared secret key is essential for ensuring the confidentiality and integrity of the data exchanged between these 2 or more parties. Key exchange protocols are a fundamental building block for secure communication, and they are used in various encryption techniques like symmetric-key encryption and public-key encryption also known as asymmetric-key encryption.
+
+One of the most famous and widely used key exchange protocols is the Diffie-Hellman key exchange, which was developed by Whitfield Diffie and Martin Hellman in 1976.
+
+Diffie–Hellman is used to secure a variety of Internet services. However, research published in October 2015 suggests that the parameters in use for many DH Internet applications at that time were not strong enough to prevent compromise by very well-funded attackers, such as the security services of some countries.
+
+# overview of the d-h exchange protocol
+
+- Initialization: The protocol begins with each party generating their own key pair. This key pair consists of a public key and a private key. The private key is kept secret, while the public key is shared with the other party.
+
+- Exchange of Public Keys: Each party sends their public key to the other party over the insecure communication channel. These public keys are not secret and can be intercepted by an eavesdropper.
+
+- Shared Secret Calculation: Using the received public key and their own private key, each party calculates a shared secret key. The remarkable property of the Diffie-Hellman protocol is that even if an eavesdropper knows both public keys, they cannot easily compute the shared secret without knowing the private keys.
+
+- Use of Shared Secret: The parties can now use the shared secret key to encrypt and decrypt their communications. This shared secret is used for symmetric-key encryption, where the same key is used for both encryption and decryption.
+
+- Secrecy: The security of the protocol relies on the difficulty of the discrete logarithm problem, which makes it computationally infeasible for an eavesdropper to determine the shared secret key from the public keys exchanged.
+
+Diffie-Hellman is considered secure when used with sufficiently large prime numbers and well-implemented cryptographic techniques. It's widely used in various secure communication protocols like SSL/TLS for secure web browsing and SSH for secure shell connections.
+An example of the above steps, with the help of an example [1]
+
+<div className="bg-white p-2 border-5 border-orange-500 w-fit">
+  <img
+    className="h-[20%]"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Diffie-Hellman_Key_Exchange.svg/250px-Diffie-Hellman_Key_Exchange.svg.png"
+    alt="architecture diagram"
+  />
+</div>
+
+The process begins by having the two parties, Alice and Bob, publicly agree on an arbitrary starting color that does not need to be kept secret. In this example, the color is yellow. Each person also selects a secret color that they keep to themselves – in this case, red and cyan. The crucial part of the process is that Alice and Bob each mix their own secret color together with their mutually shared color, resulting in orange-tan and light-blue mixtures respectively, and then publicly exchange the two mixed colors. Finally, each of them mixes the color they received from their partner with their own private color. The result is a final color mixture (yellow-brown in this case) that is identical to their partner's final color mixture.
+
+If a third party listened to the exchange, they would only know the common color (yellow) and the first mixed colors (orange-tan and light blue), but it would be very hard for them to find out the final secret color (yellow-brown). Bringing the analogy back to a real-life exchange using large numbers rather than colors, this determination is computationally expensive. It is impossible to compute in a practical amount of time even for modern supercomputers.
+
+# vulnerabilities
+
+The basic Diffie-Hellman key exchange has a significant limitation: it doesn't provide any way to ensure that the parties communicating are who they claim to be. This means that it's vulnerable to a "Man-in-the-Middle" (MitM) attack, where an attacker can intercept and potentially manipulate the communication between two parties.
+
+To address this vulnerability, it's recommended to combine Diffie-Hellman with an authentication method, such as digital signatures. Authentication methods help confirm the identities of the users communicating over the public network.
+
+Additionally, there is a security issue called "Logjam" that affects the use of Diffie-Hellman in some cases, particularly in the context of the TLS (Transport Layer Security) protocol, which secures web communications. Logjam attacks can weaken the security of a connection by downgrading the cryptography used to a level where an attacker can easily read and modify the data being transmitted. However, it's important to note that Diffie-Hellman can still be secure if it's implemented correctly. For instance, using a longer key length (e.g., 2,048 bits) can effectively defend against Logjam attacks and maintain the security of the protocol.
+
+# what is neural cryptography
+
+Neural cryptography is an interesting and innovative concept that combines elements of neural networks and cryptography to develop cryptographic protocols based on the principles of machine learning. Neural cryptography was introduced by T. Rindfleisch and initially explored by researchers in the late 1990s. The idea behind neural cryptography is to use artificial neural networks to securely exchange cryptographic keys or information between two or more parties.
+
+# Neural Key Exchange Protocol
+
+For this project, we built a messaging application built using Python. The interaction was between 2 entities, the client and the server. This project also harnessed the power and concepts of Tree Parity Machines (TPM)
+
+A Tree Parity Machine (TPM) is a type of artificial neural network used in machine learning and cryptography. It's a specific type of neural network designed to perform certain computational tasks, primarily related to cryptographic key generation and secure communication.
+
+A Tree Parity Machine consists of the following components:
+
+- Nodes (Neurons): The network is composed of interconnected nodes, which can be thought of as artificial neurons. Each node has an associated weight, and the connections between nodes have weights as well.
+
+- Layers: The TPM is organized into layers, with each layer consisting of multiple nodes. Typically, a TPM has an input layer, one or more hidden layers, and an output layer.
+
+- Thresholds: Each node has an associated threshold value, and the output of a node depends on whether the weighted sum of its inputs exceeds its threshold.
+
+The key idea behind a Tree Parity Machine is that it is capable of learning and generating shared secrets between two or more parties. It can be used in cryptographic applications such as secure key exchange. Here's how it works:
+
+- Initialization: Each party generates a Tree Parity Machine with the same structure, including the same number of layers and nodes, and randomizes the weights and thresholds.
+
+- Training: The parties engage in a training process where they share inputs and corresponding outputs generated by their TPMs. During this training, the TPMs adjust their internal weights and thresholds to converge to a common shared secret. This shared secret can be used as a cryptographic key.
+
+- Secure Communication: Once the TPMs have been trained and have converged to a shared secret, they can use this secret for secure communication. By feeding inputs into their TPMs, they can generate ciphertexts that can be exchanged securely, as long as the TPMs are kept synchronized.
+
+# references
+
+- 1: Wikipedia

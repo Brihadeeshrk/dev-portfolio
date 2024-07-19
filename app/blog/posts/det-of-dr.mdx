@@ -1,0 +1,63 @@
+---
+title: "PROJECT [detection of diabetic retinopathy]"
+publishedAt: "2022-08-17"
+summary: "Diabetic Retinopathy (DR) is a major sight-threatening complication of diabetes. It affects the blood vessels in the retina. Quick Detection of DR, using Computer Science has huge benefits over manual detection, as a result of advances in deep learning techniques. This project aims to address this issue"
+---
+
+client: msrit |
+my role: python developer |
+project duration: 3 months |
+
+Diabetic Retinopathy (DR) is a major sight-threatening complication of diabetes. It affects the blood vessels in the retina. Quick Detection of DR, using Computer Science has huge benefits over manual detection, as a result of advances in deep learning techniques. All the work that has been done in DR detection doesn’t take into factor that all medical diagnosis always has an element of uncertainty with them. Several research papers have been published that go over the process of detecting DR using various Machine Learning Approaches, such as Deep Learning and convoluted Neural Networks.
+
+# introduction
+
+For the past few years, a huge effort has gone into advancing robust analytical machines that can process images and implement machine learning models.
+
+Diabetic Retinopathy (DR) is a sight-threatening complication of diabetes. Diabetes interferes with the body's ability to use and store glucose. The disease is distinguished by having high sugar levels in the blood, which can cause impairment throughout the body, including the eyes. Over time, diabetes damages small blood vessels throughout the body, including the ones that supply the retina, the part of the eye responsible for detecting light and sending signals to the brain, with blood and essential nutrients. This damage causes Essential fluids to leak into the macula, the area of the retina responsible for clear central vision.
+
+DR can be primarily classified into 2 types:
+
+- early DR
+- advanced DR.
+
+Early DR, also known as Non-proliferative Diabetic Retinopathy (NPDR) is the early stage of the disease in which symptoms will be nonexistent or mild. In NPDR, the blood vessels in the retina are incapacitated. Tiny bulges in the blood vessels, known as micro-aneurysms, may leak fluid into the retina. This leakage may lead to swelling of the macula. Advanced DR, also known as Proliferative Diabetic Retinopathy (PDR) is the more advanced form of the disease. At this stage, circulation problems deprive the retina of oxygen. As a result, new, fragile blood vessels can begin to grow in the retina and into the vitreous body, the gel-like fluid that fills the back of the eye.
+
+The symptoms for DR cover:
+
+- blurred vision
+- difficulty seeing well at night
+- having an unlit or empty spot in the center of your vision
+- seeing spots or floaters. Treatment of DR varies on the severity of the disease. In the early stages, your Ophthalmologist will probably keep track of how your eyes are doing and may ask you to take a comprehensive dilated eye exam. In the later stages, It may be necessary to get laser surgery done to seal the leaking blood vessels to discourage other blood vessels from leaking
+
+<div className="bg-white p-2 border-5 border-orange-500 mt-5">
+  <img src="/assets/dr-arch.webp" alt="architecture diagram" />
+</div>
+
+Above is the proposed architecture diagram for the detection of DR. The Architecture comprises Input, which is the Fundus Image. The Images are then pre-processed by turning into grayscale and the nerve endings are highlighted. The model then uses Convolutional Neural Network Based Feature Extraction to classify the Fundus Images into their respective class and retains the images that are uncertain.
+
+# methodology
+
+## Pre-Processing
+
+The dataset description mentions that the Images may vary in Resolution, Size and ID’s. It was found that many fundus images had a black background, and some didn’t. The aim of this section is to normalise and set all of the training and validation sets to a uniform Resolution and Size.
+
+## resnet50
+
+Resnet50 is an extremely popular CNN model that has been used to classify everything under the sun. It’s 50 layers deep, hence the name “Resnet50”. It was initially trained on the ImageNet dataset which consists of over a million images with over 1000 classes.
+
+## densenet121
+
+DenseNet is one of the latest discoveries in Neural Networks for Visual Object Recognition. DenseNet intuitively, by connecting through patterns, requires fewer parameters than a traditional CNN, as there is no need to learn redundant feature maps.
+
+## discussion of results
+
+As this paper is in the process of being published, results and other technical aspects cannot be revealed at the moment.
+
+## conclusion
+
+From this study, it is concluded that (i) Using Uncertainty Analysis that implements Monte Carlo Dropout helps improve Accuracy (ii) Conv XGBoost performs better than Convolution Neural Networks when it comes to the classification of the entire dataset (iii) Uncertainty Analysis in the proposed work yields better results than classification model.
+
+## acknowledgment
+
+we'd like to thank The Head of the Department of Information Science and Engineering, Dr. Sanjay H A and Mentor, Dr. S. R. Mani Sekhar for providing the opportunity to work on this model.

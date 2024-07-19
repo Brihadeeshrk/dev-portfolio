@@ -1,0 +1,82 @@
+---
+title: "PROJECT [ui for an ethereum smart contract]"
+publishedAt: "2021-02-10"
+summary: "One of my first projects in web development, where I build the front end for a smart contract."
+---
+
+client: msrit |
+my role: front end engineer |
+project duration: 2 months |
+
+A little preface, before we get into the details such as code, and smart contracts, maybe we should understand the concepts of blockchain and decentralisation?
+
+# blockchain
+
+Blockchain is like a digital ledger or record-keeping system that's secure and transparent. Blockchains can be used to make data in any industry immutable, or in other words, data once stored that cannot be altered.
+Here's an introduction to blockchain that should help you understand better.
+
+# decentralisation
+
+Let's take for context a very popular example of Supply Chain Management.
+These supply chains deal with processes such as production, distribution, delivery, and servicing of goods. There has to be more than one such factory right? because we're a country with such a huge population, one factory just isn't going to cut it, which is where decentralisation can have several benefits.
+
+- Transparency and Trust: A decentralised supply chain system can make the entire process more transparent. Each participant in the supply chain can record and verify their actions and transactions on a shared blockchain ledger (a ledger is an account on the blockchain). This transparency helps build trust among all participants as they can independently verify the authenticity and origin of products or raw materials.
+
+- Reduced Fraud and Counterfeiting: With a decentralised system, it becomes much more challenging for counterfeit products to enter the supply chain. Every product can be traced back to its source, and consumers can have confidence in the authenticity of what they're purchasing.
+
+- Reduced Overhead Costs: Traditional centralised supply chain systems often involve significant administrative overhead costs for intermediary organizations. Decentralized systems can reduce the need for intermediaries and associated costs.
+
+- Resilience to Single Points of Failure: In a centralised supply chain, if one central authority or database is compromised or experiences a failure, the entire supply chain can be disrupted. In a decentralized system, there is no single point of failure, making the system more robust and resilient. There is no single entity in control, which eliminates the concept of single point of failure.
+
+Now that we have all this info, let's get into the topic at hand, smart contracts.
+
+# smart contracts
+
+Smart contracts are like digital agreements that run on blockchain technology. Think of them as self-executing contracts with the terms of the agreement directly written into code.
+Assume you and your friend make a bet without involving a middleman, like a bank. Both of you agree that if there's no traffic on the way home tomorrow, your friend owes you ₹100, and if there is traffic, you owe your friend ₹100. Is there a way we can make this bet fair and automatic?
+YEP!
+
+- Digital Agreement: You and your friend create a digital agreement, which is the smart contract. It's like a computer program that both of you can see and trust.
+
+- Code-Based Automated Rules: In the smart contract, you write down the rules of the bet in code. For example, you define that if the time to reach home is less than or equal to the time to get home now (as determined by Google Maps), the smart contract sends ₹100 from your friend's account to yours. If it takes more time, it automatically sends ₹100 from your account to your friend's.
+
+- No Middleman: There's no need for a bank, lawyer, or anyone else to oversee this. The code in the smart contract is in charge, and it's impartial.
+
+That's enough theory, coming to the project, I built a front end using HTML, CSS, and Javascript that interacted with a smart contract that was run using Solidity in the Remix IDE.
+
+This project was built for teaching purposes at a workshop held at a college in Nothern Karnataka by Dr. Mydhili K Nair, who at that time was a professor at Ramaiah Institute of Technology. This workshop taught professors the new emerging field that is blockchain with the demo of a simple voting app.
+
+The logic is simple, any person can initiate a vote where all the other people can vote either YES or NO.
+
+The user who creates this contract and the people who want to vote, need to have a wallet in their browser, like Metamask or Coinbase wallet.
+
+For simplicity, we went with a Metamask wallet and used Ganache and the Rinkeby Test Network to demo and teach.
+Ganache is used to fire up your own personal Ethereum blockchain that's run locally, which you can use to run tests and execute commands, where commands in this context, are creating contracts and voting.
+
+While I built the Front end, the Smart Contract was written by Aditya Gupta, a blockchain consultant currently working at brahma.fi
+
+I used the web3 package from npm to initialise the DApp (Decentralised App)
+
+```js [index.js]
+const ethE = () => {
+  // checking if the user has installed any blockchain wallets
+			if (window.web3) {
+            // if yes, we initialise a web3 object with the currentProvider being a wallet service like metamask or so
+				window.web3 = new Web3(window.web3.currentProvider);
+				window.ethereum.enable();
+				console.log('SUCCESS: YOU ARE USING A WEB3 INJECTED WEB BROWSER / METAMASK ENABLED')
+				return true;
+			}
+  // if the user doesn't have any wallets installed
+			console.log('FAIL: YOU ARE NOT USING A WEB3 INJECTED WEB BROWSER / METAMASK ABSENT')
+			return false;
+		}
+// In case the user is using some legacy-based browser that isn't compatible with ethereum or blockchain-based wallets
+		if (!ethE()) {
+			alert("Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!");
+		}
+}
+```
+
+For the entire codebase, you can visit the link attached above and try it out for yourself!
+And let me know if you have any queries on the same, I'd be more than happy to resolve them!

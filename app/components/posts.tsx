@@ -12,8 +12,12 @@ export function BlogPosts({ few }: Props) {
 
   return (
     <div>
-      <p className="my-3">--</p>
-      <p className="font-medium mb-8">Posts</p>
+      {few && (
+        <>
+          <p className="my-3">--</p>
+          <p className="font-medium mb-8">Posts</p>
+        </>
+      )}
 
       {articles
         .sort((a, b) => {
@@ -40,6 +44,7 @@ export function BlogPosts({ few }: Props) {
             </div>
           </Link>
         ))}
+
       {few && (
         <p className="font-medium mb-8">
           read more posts{" "}
